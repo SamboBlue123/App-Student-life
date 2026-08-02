@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Screen/Start_first_Page.dart';
+import 'package:get/get.dart';
+import 'screens/welcome_page.dart';
+import 'screens/login_screen.dart';
+import 'controllers/navigation_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return GetMaterialApp(
       title: 'Student Life',
       theme: ThemeData(
-        fontFamily: 'Poppins',
+        primarySwatch: Colors.blue,
+        fontFamily: 'Roboto',
       ),
-      home: const WelcomePage(),
+      initialRoute: '/welcome',
+      getPages: [
+        GetPage(name: '/welcome', page: () => const WelcomePage()),
+        GetPage(name: '/login', page: () => const LoginScreen()),
+      ],
+      initialBinding: BindingsBuilder(() {
+        Get.put(NavigationController());
+      }),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
