@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'screens/welcome_page.dart';
-import 'screens/login_screen.dart';
-import 'controllers/navigation_controller.dart';
+import 'screens/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,19 +13,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Student Life',
+      title: 'MyStudyLife',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF6C63FF),
+          brightness: Brightness.light,
+        ),
         fontFamily: 'Roboto',
+        scaffoldBackgroundColor: const Color(0xFFF7F7FB),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: Color(0xFF6C63FF),
+          foregroundColor: Colors.white,
+        ),
       ),
       initialRoute: '/welcome',
       getPages: [
         GetPage(name: '/welcome', page: () => const WelcomePage()),
-        GetPage(name: '/login', page: () => const LoginScreen()),
+        GetPage(name: '/home', page: () => const HomePage()),
       ],
-      initialBinding: BindingsBuilder(() {
-        Get.put(NavigationController());
-      }),
       debugShowCheckedModeBanner: false,
     );
   }

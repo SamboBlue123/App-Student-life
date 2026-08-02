@@ -38,6 +38,9 @@ dependencies:
   # GetX for navigation and state management
   get: ^4.6.6
 
+  # Local persistence for offline notes and reminders
+  shared_preferences: ^2.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
