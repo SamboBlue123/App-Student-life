@@ -4,6 +4,7 @@ import '../models/task.dart';
 class OfflineStorage {
   static const _tasksKey = 'offline_tasks';
   static const _goalKey = 'task_goal';
+  static const _notesKey = 'offline_notes';
 
   static Future<List<Task>> loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
@@ -16,6 +17,18 @@ class OfflineStorage {
   static Future<void> saveTasks(List<Task> tasks) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tasksKey, Task.encodeList(tasks));
+  }
+
+  static Future<List<String>> loadNotes() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(_notesKey) ?? <String>[];
+  }
+
+  static Future<void> addNote(String note) async {
+    final prefs = await SharedPreferences.getInstance();
+    final notes = await loadNotes();
+    notes.add(note);
+    await prefs.setStringList(_notesKey, notes);
   }
 
   static Future<void> addTask(Task task) async {
