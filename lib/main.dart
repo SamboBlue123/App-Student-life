@@ -17,15 +17,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6C63FF),
+          seedColor: const Color(0xFFB84EFB),
           brightness: Brightness.light,
         ),
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: const Color(0xFFF7F7FB),
+        scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          backgroundColor: Color(0xFF6C63FF),
+          backgroundColor: Colors.transparent,
           foregroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: const Color(0xFF8C4DFF),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          selectedItemColor: Color(0xFF8C4DFF),
+          unselectedItemColor: Colors.black54,
         ),
       ),
       initialRoute: '/welcome',
