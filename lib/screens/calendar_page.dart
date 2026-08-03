@@ -39,7 +39,11 @@ class CalendarPage extends StatelessWidget {
             'Select a day to see tasks and exam plans scheduled for that date.',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
+<<<<<<< HEAD
           const SizedBox(height: 10),
+=======
+          const SizedBox(height: 10),
+>>>>>>> c17d303ea655605b293f76114428ef3eda04ed82
           Row(
             children: [
               Expanded(
