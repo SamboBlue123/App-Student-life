@@ -37,7 +37,7 @@ class CalendarPage extends StatelessWidget {
           const SizedBox(height: 8),
           const Text(
             'Select a day to see tasks and exam plans scheduled for that date.',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
           const SizedBox(height: 16),
           Row(
@@ -57,7 +57,12 @@ class CalendarPage extends StatelessWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff6C63FF),
+                    backgroundColor: const Color(0xFF8C4DFF),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: Text(
                     'Selected: ${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}',
@@ -77,20 +82,35 @@ class CalendarPage extends StatelessWidget {
                     separatorBuilder: (_, __) => const SizedBox(height: 12),
                     itemBuilder: (context, index) {
                       final task = dailyTasks[index];
-                      return Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                      return Container(
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFFF2F7), Color(0xFFF7F0FF)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.purple.withValues(alpha: 0.12)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 18,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
                         ),
                         child: ListTile(
                           leading: Checkbox(
                             value: task.isDone,
                             onChanged: (_) => onToggleDone(task),
                           ),
-                          title: Text(task.description),
+                          title: Text(
+                            task.description,
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
                           subtitle: Text(task.isExam ? 'Exam task' : 'Task'),
                           trailing: IconButton(
-                            icon: const Icon(Icons.delete),
+                            icon: const Icon(Icons.delete, color: Colors.redAccent),
                             onPressed: () => onDelete(task.id),
                           ),
                         ),

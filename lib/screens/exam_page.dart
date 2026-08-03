@@ -28,7 +28,7 @@ class ExamPage extends StatelessWidget {
           const SizedBox(height: 8),
           const Text(
             'Track upcoming exam tasks and mark them complete when ready.',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
           const SizedBox(height: 16),
           Expanded(
@@ -41,10 +41,22 @@ class ExamPage extends StatelessWidget {
                     separatorBuilder: (_, __) => const SizedBox(height: 12),
                     itemBuilder: (context, index) {
                       final task = examTasks[index];
-                      return Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                      return Container(
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFFF1FF), Color(0xFFFAF0FF)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.purple.withValues(alpha: 0.1)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 16,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
                         ),
                         child: ListTile(
                           leading: Checkbox(
@@ -57,12 +69,15 @@ class ExamPage extends StatelessWidget {
                               decoration: task.isDone
                                   ? TextDecoration.lineThrough
                                   : null,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           subtitle: Text(
-                              'Due ${task.dueDate.toLocal()}'.split(' ')[0]),
+                            'Due ${task.dueDate.toLocal()}'.split(' ')[0],
+                            style: const TextStyle(color: Colors.black54),
+                          ),
                           trailing: IconButton(
-                            icon: const Icon(Icons.delete),
+                            icon: const Icon(Icons.delete, color: Colors.redAccent),
                             onPressed: () => onDelete(task.id),
                           ),
                         ),
